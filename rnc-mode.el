@@ -107,6 +107,9 @@
 
 (defvar rnc-jing-jar-file nil
   "Pathname to the Jing JAR file.")
+  
+(defvar rnc-jing-java-options ""
+  "Options to call java with. Set to -Xss8M if you get StackOverflow on deeply nested 'matroska' schemas")
 
 (defvar rnc-enable-flymake nil
   "If non-nil then schema are checked on the fly if Jing is installed")
@@ -118,7 +121,7 @@
          (local-file (file-relative-name
                       temp-file
                       (file-name-directory buffer-file-name))))
-    (list "java" (list "-jar" rnc-jing-jar-file "-c" local-file))))
+    (list "java" (list rnc-jing-java-options "-jar" rnc-jing-jar-file "-c" local-file))))
 
 (defun rnc-configure-flymake ()
   (if (and (stringp rnc-jing-jar-file)
