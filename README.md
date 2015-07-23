@@ -30,13 +30,19 @@ archive. Put the following in your initialization file:
 ## On-the-fly Syntax Checking with Flymake and Jing
 
 You can perform on-the-fly syntax checking of your schema using
-[Jing](http://www.thaiopensource.com/relaxng/jing.html) and Flymake. Two
+[Jing](http://www.thaiopensource.com/relaxng/jing.html) and Flymake. These
 variables control this setting:
 
 - Variable: **rnc-jing-jar-file**
 
     The value of this variable is a string, the pathname of the JING jar file.
-  
+
+- Variable: **rnc-jing-java-options**  
+
+   If you get "Exception in thread "main" java.lang.StackOverflowError
+   at com.thaiopensource.relaxng.pattern.BinaryPattern.checkRecursion(BinaryPattern.java:16)"
+   for deeply nested "matroska" schemas, set this to eg "-Xss8M"
+
 - Variable: **rnc-enable-flymake**
 
     When this variable is `t` flymake is enabled when an RNC file is
@@ -49,6 +55,7 @@ For example:
           rnc-jing-jar-file (expand-file-name "~/src/jing-20091111/bin/jing.jar")
 
 Currently this only works with single-file schema.
+For multi-file schemas, the main one (that **includes** the others) validates fine, but the subsidiary schemas get error "no start element".
 
 ## Imenu Support
 
