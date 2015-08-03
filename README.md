@@ -39,9 +39,10 @@ variables control this setting:
 
 - Variable: **rnc-jing-java-options**  
 
+   Use this option to pass JVM parameters to the jing invocation, such as -Xss or -Xmx.
    If you get "Exception in thread "main" java.lang.StackOverflowError
    at com.thaiopensource.relaxng.pattern.BinaryPattern.checkRecursion(BinaryPattern.java:16)"
-   for deeply nested "matroska" schemas, set this to eg "-Xss8M"
+   for deeply nested "matroska" schemas, increase the stack size by setting this to eg "-Xss8M"
 
 - Variable: **rnc-enable-flymake**
 
